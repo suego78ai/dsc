@@ -1,0 +1,715 @@
+/* ==========================================================================
+   디지털새싹 현수막 자동 생성기 - Design System & Custom Properties
+   ========================================================================== */
+
+:root {
+  /* Color Palette */
+  --bg-main: #0B0F19;
+  --bg-card: rgba(20, 28, 48, 0.6);
+  --bg-card-hover: rgba(26, 37, 63, 0.8);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-color-active: rgba(255, 255, 255, 0.2);
+  
+  --text-main: #F3F4F6;
+  --text-muted: #9CA3AF;
+  
+  /* Primary Accent Colors */
+  --accent-primary: #10B981; /* Emerald Green */
+  --accent-glow: rgba(16, 185, 129, 0.4);
+  
+  /* Theme Colors for Previews */
+  --gradient-green: linear-gradient(135deg, #10B981 0%, #34D399 50%, #FBBF24 100%);
+  --gradient-blue: linear-gradient(135deg, #2563EB 0%, #3B82F6 60%, #06B6D4 100%);
+  --gradient-purple: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 50%, #EC4899 100%);
+  --gradient-sunset: linear-gradient(135deg, #EF4444 0%, #F97316 50%, #FBBF24 100%);
+  --gradient-cyber: linear-gradient(135deg, #0B132B 0%, #06D6A0 50%, #00F5FF 100%);
+  --gradient-auto: linear-gradient(135deg, #10B981 0%, #3B82F6 50%, #7C3AED 100%);
+  
+  /* Font Stack */
+  --font-title: 'Do Hyeon', sans-serif;
+  --font-body: 'Noto Sans KR', sans-serif;
+  
+  /* Shadows & Blur */
+  --glass-blur: 16px;
+  --box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --card-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15);
+  --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --neon-glow: 0 0 15px var(--accent-glow);
+}
+
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+    radial-gradient(at 90% 10%, rgba(37, 99, 235, 0.08) 0px, transparent 50%),
+    radial-gradient(at 50% 80%, rgba(124, 58, 237, 0.05) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* App Container */
+.app-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Header Style
+   ========================================================================== */
+
+.app-header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+  animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.logo-area h1 {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.logo-area h1 .accent {
+  background: var(--gradient-auto);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sprout-icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 8px var(--accent-glow));
+}
+
+.app-header .subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+/* ==========================================================================
+   Grid Layout
+   ========================================================================== */
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+  body {
+    padding: 1rem;
+  }
+}
+
+/* ==========================================================================
+   Card Layouts & Glassmorphism
+   ========================================================================== */
+
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.45);
+}
+
+.card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ==========================================================================
+   Left Panel: Form Elements
+   ========================================================================== */
+
+.controls-panel {
+  animation: fadeInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+/* Basic Inputs */
+input[type="text"] {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-color);
+  background: rgba(10, 15, 30, 0.8);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: var(--neon-glow);
+  background: rgba(13, 20, 38, 0.95);
+}
+
+/* Target Audience Selection Cards */
+.target-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+}
+
+.target-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.target-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.target-card .card-content {
+  background: rgba(10, 15, 30, 0.5);
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.target-card .card-content .emoji {
+  font-size: 1.6rem;
+  transition: transform 0.3s ease;
+}
+
+.target-card .card-content .label-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Active states for target cards */
+.target-card:hover .card-content {
+  background: rgba(25, 35, 60, 0.5);
+  border-color: var(--border-color-active);
+}
+
+.target-card:hover .emoji {
+  transform: translateY(-3px);
+}
+
+.target-card.active .card-content {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: var(--accent-primary);
+  box-shadow: var(--neon-glow);
+  color: var(--text-main);
+}
+
+/* Aspect Ratio Options */
+.ratio-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.ratio-btn {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  background: rgba(10, 15, 30, 0.5);
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.ratio-btn input[type="radio"] {
+  margin-right: 0.8rem;
+  accent-color: var(--accent-primary);
+}
+
+.ratio-btn:hover {
+  background: rgba(25, 35, 60, 0.5);
+  border-color: var(--border-color-active);
+}
+
+.ratio-btn.active {
+  border-color: var(--accent-primary);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+/* Theme Options Grid */
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.theme-btn {
+  background: rgba(10, 15, 30, 0.5);
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.5rem 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.theme-btn:hover {
+  border-color: var(--border-color-active);
+  background: rgba(25, 35, 60, 0.5);
+}
+
+.theme-btn.active {
+  border-color: var(--accent-primary);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.theme-color {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-name {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.theme-btn.active .theme-name {
+  color: var(--text-main);
+  font-weight: bold;
+}
+
+/* Gradient Classes for Theme Buttons */
+.auto-gradient { background: var(--gradient-auto); }
+.green-gradient { background: var(--gradient-green); }
+.blue-gradient { background: var(--gradient-blue); }
+.purple-gradient { background: var(--gradient-purple); }
+.sunset-gradient { background: var(--gradient-sunset); }
+.cyber-gradient { background: var(--gradient-cyber); }
+
+
+/* ==========================================================================
+   Right Panel: Preview & Actions
+   ========================================================================== */
+
+.preview-panel {
+  display: flex;
+  flex-direction: column;
+  animation: fadeInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.panel-header h2 {
+  margin-bottom: 0;
+}
+
+.badge {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+/* Preview Workspace */
+.preview-area {
+  background: #060913;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  margin-bottom: 1.5rem;
+}
+
+.canvas-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  background: #000;
+}
+
+/* Rendered Canvas inside screen wrapper (responsively scaled) */
+#banner-canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.preview-hint {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Action Area & Buttons */
+.action-area {
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  width: 100%;
+  padding: 1.1rem;
+  border-radius: 14px;
+  border: none;
+  font-size: 1.1rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.primary-btn {
+  background: var(--gradient-auto);
+  color: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.primary-btn strong {
+  font-weight: 700;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(16, 185, 129, 0.5);
+}
+
+.primary-btn:active {
+  transform: translateY(1px);
+}
+
+/* PPT Guide Box */
+.guide-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 1.2rem;
+}
+
+.guide-box h3 {
+  font-size: 0.95rem;
+  font-weight: bold;
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--accent-primary);
+}
+
+.guide-box ul {
+  list-style: none;
+}
+
+.guide-box li {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.guide-box li::before {
+  content: "•";
+  color: var(--accent-primary);
+  font-weight: bold;
+  position: absolute;
+  left: 0.3rem;
+  top: 0;
+}
+
+.guide-box li strong {
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ==========================================================================
+   Image Upload Section Styles
+   ========================================================================== */
+
+.upload-section {
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.5rem;
+  margin-top: 1.8rem;
+}
+
+.upload-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.upload-box {
+  background: rgba(10, 15, 30, 0.4);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.upload-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.upload-btn-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.upload-btn-wrapper input[type="file"] {
+  width: 100%;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.upload-btn-wrapper input[type="file"]::file-selector-button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-main);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-right: 0.5rem;
+}
+
+.upload-btn-wrapper input[type="file"]::file-selector-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--border-color-active);
+}
+
+.reset-btn {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #EF4444;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.reset-btn:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #EF4444;
+  color: #FFFFFF;
+}
+
+/* Upload Mode Toggle and Actions Styles */
+.upload-mode-toggle {
+  display: flex;
+  background: rgba(10, 15, 30, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.2rem;
+  margin-bottom: 0.3rem;
+  width: fit-content;
+}
+
+.mode-label {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.mode-label input[type="radio"] {
+  accent-color: var(--accent-primary);
+  margin-right: 0.2rem;
+}
+
+.mode-label:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.mode-label.active {
+  color: var(--text-main);
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.upload-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+  width: 100%;
+}
+
+.action-btn-small {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--accent-primary);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.action-btn-small:hover {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: var(--accent-primary);
+  color: #FFFFFF;
+}
+
+.upload-status {
+  font-size: 0.8rem;
+  color: #E2E8F0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  margin-top: 0.3rem;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+
+

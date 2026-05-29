@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>디지털새싹 현수막 자동 생성기</title>
+  <!-- Google Fonts: Do Hyeon (Heading), Noto Sans KR (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <span class="sprout-icon">🌱</span>
+        <h1>디지털새싹 <span class="accent">현수막 생성기</span></h1>
+      </div>
+      <p class="subtitle">초·중·고등학생 대상 디지털새싹 행사를 위한 고해상도 현수막 자동 제작 툴</p>
+    </header>
+
+    <div class="main-layout">
+      <!-- Left Panel: Controls -->
+      <section class="controls-panel card">
+        <h2>🎨 현수막 설정</h2>
+        
+        <form id="generator-form" onsubmit="event.preventDefault();">
+          <!-- Banner Title -->
+          <div class="form-group">
+            <label for="banner-title">행사 제목</label>
+            <input type="text" id="banner-title" value="디지털새싹 인공지능 캠프" placeholder="예: 디지털새싹 인공지능 캠프">
+          </div>
+
+          <!-- Banner Subtitle -->
+          <div class="form-group">
+            <label for="banner-subtitle">보조 슬로건</label>
+            <input type="text" id="banner-subtitle" value="새싹처럼 피어나는 우리의 디지털 미래" placeholder="예: 새싹처럼 피어나는 우리의 디지털 미래">
+          </div>
+
+          <!-- Target Audience (초등, 중등, 고등, 공통) -->
+          <div class="form-group">
+            <label>교육 대상</label>
+            <div class="target-options">
+              <label class="target-card">
+                <input type="radio" name="target-audience" value="elementary">
+                <div class="card-content">
+                  <span class="emoji">🎒</span>
+                  <span class="label-text">초등학생</span>
+                </div>
+              </label>
+              <label class="target-card">
+                <input type="radio" name="target-audience" value="middle">
+                <div class="card-content">
+                  <span class="emoji">🤖</span>
+                  <span class="label-text">중학생</span>
+                </div>
+              </label>
+              <label class="target-card">
+                <input type="radio" name="target-audience" value="high">
+                <div class="card-content">
+                  <span class="emoji">💻</span>
+                  <span class="label-text">고등학생</span>
+                </div>
+              </label>
+              <label class="target-card active">
+                <input type="radio" name="target-audience" value="all" checked>
+                <div class="card-content">
+                  <span class="emoji">🚀</span>
+                  <span class="label-text">초·중·고 공통</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Date & Time -->
+          <div class="form-group">
+            <label for="event-date">일시</label>
+            <input type="text" id="event-date" value="2026. 06. 20.(토) ~ 06. 21.(일) 10:00 - 17:00" placeholder="예: 2026. 06. 20.(토) 10:00 ~ 13:00">
+          </div>
+
+          <!-- Location -->
+          <div class="form-group">
+            <label for="event-location">장소</label>
+            <input type="text" id="event-location" value="미래인재교육관 3층 대강당" placeholder="예: 서울대학교 미래융합센터 204호">
+          </div>
+
+          <!-- Organizer / Sponsor -->
+          <div class="form-group">
+            <label for="event-organizer">주최/주관/후원</label>
+            <input type="text" id="event-organizer" value="주최: 교육부, 17개 시·도 교육청, 한국과학창의재단" placeholder="예: 주최: 교육부, 한국과학창의재단 | 주관: 한국대학">
+          </div>
+
+          <!-- Banner Ratio Selection -->
+          <div class="form-group">
+            <label>배너 비율 (사이즈)</label>
+            <div class="ratio-options">
+              <label class="ratio-btn">
+                <input type="radio" name="banner-ratio" value="5-1">
+                <span>현수막 표준 (5:1)</span>
+              </label>
+              <label class="ratio-btn">
+                <input type="radio" name="banner-ratio" value="3-1">
+                <span>PPT 삽입용 (3:1)</span>
+              </label>
+              <label class="ratio-btn active">
+                <input type="radio" name="banner-ratio" value="16-9" checked>
+                <span>PPT 슬라이드 반 크기 (32:9)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Custom Theme Override -->
+          <div class="form-group">
+            <label>디자인 테마</label>
+            <div class="theme-grid">
+              <button type="button" class="theme-btn active" data-theme="auto" title="대상 선택에 맞춰 자동 적용">
+                <span class="theme-color auto-gradient"></span>
+                <span class="theme-name">자동 테마</span>
+              </button>
+              <button type="button" class="theme-btn" data-theme="green" title="상큼하고 친근한 그린 테마">
+                <span class="theme-color green-gradient"></span>
+                <span class="theme-name">새싹 연두</span>
+              </button>
+              <button type="button" class="theme-btn" data-theme="blue" title="스마트하고 안정적인 블루 테마">
+                <span class="theme-color blue-gradient"></span>
+                <span class="theme-name">디지털 블루</span>
+              </button>
+              <button type="button" class="theme-btn" data-theme="purple" title="미래지향적이고 고급스러운 퍼플 테마">
+                <span class="theme-color purple-gradient"></span>
+                <span class="theme-name">네온 퍼플</span>
+              </button>
+              <button type="button" class="theme-btn" data-theme="sunset" title="활기차고 에너지 넘치는 석양 테마">
+                <span class="theme-color sunset-gradient"></span>
+                <span class="theme-name">선셋 오렌지</span>
+              </button>
+              <button type="button" class="theme-btn" data-theme="cyber" title="미래지향적이고 테크니컬한 에메랄드 테마">
+                <span class="theme-color cyber-gradient"></span>
+                <span class="theme-name">사이버 에메랄드</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Image Upload Menu -->
+          <div class="form-group upload-section">
+            <label>🖼️ 내 이미지로 꾸미기</label>
+            <div class="upload-grid">
+              <div class="upload-box">
+                <span class="upload-title">배경 이미지 교체</span>
+                <div class="upload-mode-toggle">
+                  <label class="mode-label active">
+                    <input type="radio" name="bg-upload-mode" value="file" checked>
+                    <span>단일 파일</span>
+                  </label>
+                  <label class="mode-label">
+                    <input type="radio" name="bg-upload-mode" value="folder">
+                    <span>폴더 (랜덤)</span>
+                  </label>
+                </div>
+                <div class="upload-btn-wrapper" id="bg-file-wrapper">
+                  <input type="file" id="upload-bg" accept="image/*">
+                </div>
+                <div class="upload-btn-wrapper" id="bg-folder-wrapper" style="display: none;">
+                  <input type="file" id="upload-bg-folder" webkitdirectory directory multiple>
+                </div>
+                <div id="bg-upload-status" class="upload-status" style="display: none;"></div>
+                <div class="upload-actions">
+                  <button type="button" id="reroll-bg-btn" class="action-btn-small" style="display: none;">🎲 랜덤 다시 뽑기</button>
+                  <button type="button" id="reset-bg-btn" class="reset-btn" style="display: none;">초기화</button>
+                </div>
+              </div>
+              
+              <div class="upload-box">
+                <span class="upload-title">캐릭터/로고 교체</span>
+                <div class="upload-btn-wrapper">
+                  <input type="file" id="upload-char" accept="image/*">
+                  <button type="button" id="reset-char-btn" class="reset-btn" style="display: none;">초기화</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Right Panel: Preview and Download -->
+      <section class="preview-panel card">
+        <div class="panel-header">
+          <h2>👁️ 실시간 미리보기</h2>
+          <span class="badge">JPG 다운로드 가능</span>
+        </div>
+
+        <div class="preview-area">
+          <div class="canvas-wrapper">
+            <!-- The actual canvas rendering at high res -->
+            <canvas id="banner-canvas"></canvas>
+          </div>
+          <p class="preview-hint">※ 화면 크기에 맞게 축소 표시되며, 다운로드 시 PPT에 적합한 초고화질(3000px 가로폭)로 저장됩니다.</p>
+        </div>
+
+        <div class="action-area">
+          <button id="download-jpg-btn" class="btn primary-btn">
+            <span class="icon">💾</span>
+            <strong>고해상도 JPG 파일 다운로드</strong>
+          </button>
+        </div>
+
+        <!-- Guide for inserting in PowerPoint -->
+        <div class="guide-box">
+          <h3>💡 파워포인트(PPT) 활용 팁</h3>
+          <ul>
+            <li>다운로드한 <strong>JPG 파일을 슬라이드로 드래그</strong>하여 바로 배치할 수 있습니다.</li>
+            <li><strong>현수막 표준 (5:1)</strong> 혹은 <strong>PPT 삽입용 (3:1)</strong>은 슬라이드 위아래나 중간에 배너 형태로 넣기 좋습니다.</li>
+            <li><strong>PPT 슬라이드 반 크기 (32:9)</strong>를 선택하시면, 가로폭은 꽉 채우되 세로 크기는 슬라이드의 절반 높이로 들어가는 슬라이드 상/하단 및 중간 현수막으로 사용하기 좋습니다.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

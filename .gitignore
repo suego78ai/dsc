@@ -1,0 +1,4 @@
+# Ignore large guideline documents and design source files
+*.pdf
+*.ai
+.gemini/
