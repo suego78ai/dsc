@@ -948,23 +948,28 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.textAlign = 'center';
       ctx.fillText(title, 1500, 265);
 
-      // Sponsor Logo bar (Centered at bottom)
-      const sponsorHeight = 75;
+      // Sponsor Logo bar and Organizer text (Side-by-side single row, centered at bottom)
+      const sponsorHeight = 90;
       const moe = loadedImages.moe;
       const kofac = loadedImages.kofac;
       const moeW = moe ? (sponsorHeight - 20) * (moe.width / moe.height) : 150;
       const kofacW = kofac ? (sponsorHeight - 20) * (kofac.width / kofac.height) : 170;
       const totalSponsorW = 22 * 2 + moeW + 24 + kofacW;
-      const sponsorX = 1500 - totalSponsorW / 2;
+      
+      ctx.font = '400 26px "Noto Sans KR"';
+      const textWidth = ctx.measureText(organizerText).width;
+      const gap = 30;
+      const totalCombinedW = organizerText ? (totalSponsorW + gap + textWidth) : totalSponsorW;
+      const sponsorX = 1500 - totalCombinedW / 2;
+      
       drawSponsors(ctx, sponsorX, 445, sponsorHeight);
 
-      // Sponsor / Organizer text (Centered below sponsor logos)
       if (organizerText) {
-        ctx.fillStyle = activeTheme.isDark ? 'rgba(255,255,255,0.5)' : '#64748B';
-        ctx.font = '400 24px "Noto Sans KR"';
-        ctx.textAlign = 'center';
+        const textX = sponsorX + totalSponsorW + gap;
+        ctx.fillStyle = activeTheme.isDark ? 'rgba(255,255,255,0.6)' : '#475569';
+        ctx.textAlign = 'left';
         ctx.textBaseline = 'middle';
-        ctx.fillText(organizerText, 1500, 540);
+        ctx.fillText(organizerText, textX, 445 + sponsorHeight / 2);
       }
 
       // Flanking Mascots (Left and Right)
@@ -1009,23 +1014,28 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.textAlign = 'center';
       ctx.fillText(title, 1500, 390);
 
-      // Sponsor Logo bar (Centered at bottom)
-      const sponsorHeight = 90;
+      // Sponsor Logo bar and Organizer text (Side-by-side single row, centered at bottom)
+      const sponsorHeight = 110;
       const moe = loadedImages.moe;
       const kofac = loadedImages.kofac;
-      const moeW = moe ? (sponsorHeight - 20) * (moe.width / moe.height) : 150;
-      const kofacW = kofac ? (sponsorHeight - 20) * (kofac.width / kofac.height) : 170;
-      const totalSponsorW = 22 * 2 + moeW + 24 + kofacW;
-      const sponsorX = 1500 - totalSponsorW / 2;
-      drawSponsors(ctx, sponsorX, 720, sponsorHeight);
+      const moeW = moe ? (sponsorHeight - 24) * (moe.width / moe.height) : 200;
+      const kofacW = kofac ? (sponsorHeight - 24) * (kofac.width / kofac.height) : 220;
+      const totalSponsorW = 26 * 2 + moeW + 30 + kofacW;
+      
+      ctx.font = '400 34px "Noto Sans KR"';
+      const textWidth = ctx.measureText(organizerText).width;
+      const gap = 40;
+      const totalCombinedW = organizerText ? (totalSponsorW + gap + textWidth) : totalSponsorW;
+      const sponsorX = 1500 - totalCombinedW / 2;
+      
+      drawSponsors(ctx, sponsorX, 700, sponsorHeight);
 
-      // Sponsor / Organizer text (Centered below sponsor logos)
       if (organizerText) {
-        ctx.fillStyle = activeTheme.isDark ? 'rgba(255,255,255,0.5)' : '#64748B';
-        ctx.font = '400 32px "Noto Sans KR"';
-        ctx.textAlign = 'center';
+        const textX = sponsorX + totalSponsorW + gap;
+        ctx.fillStyle = activeTheme.isDark ? 'rgba(255,255,255,0.6)' : '#475569';
+        ctx.textAlign = 'left';
         ctx.textBaseline = 'middle';
-        ctx.fillText(organizerText, 1500, 845);
+        ctx.fillText(organizerText, textX, 700 + sponsorHeight / 2);
       }
 
       // Flanking Mascots (Left and Right)
@@ -1070,23 +1080,28 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.textAlign = 'center';
       ctx.fillText(title, 1500, 320);
 
-      // Sponsor Logo bar (Centered at bottom)
-      const sponsorHeight = 80;
+      // Sponsor Logo bar and Organizer text (Side-by-side single row, centered at bottom)
+      const sponsorHeight = 100;
       const moe = loadedImages.moe;
       const kofac = loadedImages.kofac;
-      const moeW = moe ? (sponsorHeight - 20) * (moe.width / moe.height) : 150;
-      const kofacW = kofac ? (sponsorHeight - 20) * (kofac.width / kofac.height) : 170;
-      const totalSponsorW = 22 * 2 + moeW + 24 + kofacW;
-      const sponsorX = 1500 - totalSponsorW / 2;
-      drawSponsors(ctx, sponsorX, 600, sponsorHeight);
+      const moeW = moe ? (sponsorHeight - 22) * (moe.width / moe.height) : 180;
+      const kofacW = kofac ? (sponsorHeight - 22) * (kofac.width / kofac.height) : 200;
+      const totalSponsorW = 24 * 2 + moeW + 26 + kofacW;
+      
+      ctx.font = '400 30px "Noto Sans KR"';
+      const textWidth = ctx.measureText(organizerText).width;
+      const gap = 35;
+      const totalCombinedW = organizerText ? (totalSponsorW + gap + textWidth) : totalSponsorW;
+      const sponsorX = 1500 - totalCombinedW / 2;
+      
+      drawSponsors(ctx, sponsorX, 580, sponsorHeight);
 
-      // Sponsor / Organizer text (Centered below sponsor logos)
       if (organizerText) {
-        ctx.fillStyle = activeTheme.isDark ? 'rgba(255,255,255,0.5)' : '#64748B';
-        ctx.font = '400 26px "Noto Sans KR"';
-        ctx.textAlign = 'center';
+        const textX = sponsorX + totalSponsorW + gap;
+        ctx.fillStyle = activeTheme.isDark ? 'rgba(255,255,255,0.6)' : '#475569';
+        ctx.textAlign = 'left';
         ctx.textBaseline = 'middle';
-        ctx.fillText(organizerText, 1500, 710);
+        ctx.fillText(organizerText, textX, 580 + sponsorHeight / 2);
       }
 
       // Flanking Mascots (Left and Right)
