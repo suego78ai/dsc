@@ -956,7 +956,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const kofacW = kofac ? (sponsorHeight - 20) * (kofac.width / kofac.height) : 170;
       const totalSponsorW = 22 * 2 + moeW + 24 + kofacW;
       
-      ctx.font = '400 26px "Noto Sans KR"';
+      ctx.font = '400 78px "Noto Sans KR"';
       const textWidth = ctx.measureText(organizerText).width;
       const gap = 30;
       const totalCombinedW = organizerText ? (totalSponsorW + gap + textWidth) : totalSponsorW;
@@ -1022,7 +1022,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const kofacW = kofac ? (sponsorHeight - 24) * (kofac.width / kofac.height) : 220;
       const totalSponsorW = 26 * 2 + moeW + 30 + kofacW;
       
-      ctx.font = '400 34px "Noto Sans KR"';
+      ctx.font = '400 102px "Noto Sans KR"';
       const textWidth = ctx.measureText(organizerText).width;
       const gap = 40;
       const totalCombinedW = organizerText ? (totalSponsorW + gap + textWidth) : totalSponsorW;
@@ -1088,7 +1088,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const kofacW = kofac ? (sponsorHeight - 22) * (kofac.width / kofac.height) : 200;
       const totalSponsorW = 24 * 2 + moeW + 26 + kofacW;
       
-      ctx.font = '400 30px "Noto Sans KR"';
+      ctx.font = '400 90px "Noto Sans KR"';
       const textWidth = ctx.measureText(organizerText).width;
       const gap = 35;
       const totalCombinedW = organizerText ? (totalSponsorW + gap + textWidth) : totalSponsorW;
