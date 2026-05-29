@@ -917,20 +917,20 @@ document.addEventListener('DOMContentLoaded', () => {
       // Draw target-specific Nurungzzi character on the left
       drawMascot(ctx, targetAudienceValue, 210, cHeight * 0.5, 310);
 
-      // Draw Program Logo
-      const logoWidth = drawProgramLogo(ctx, 420, 55, 65);
+      // Draw Program Logo (Larger size)
+      const logoWidth = drawProgramLogo(ctx, 420, 45, 90);
       
       // Target Badge next to logo
-      const badgeX = 420 + logoWidth + 20;
-      const badgeY = 55;
-      const badgeH = 65;
-      ctx.font = 'bold 24px "Noto Sans KR"';
+      const badgeX = 420 + logoWidth + 25;
+      const badgeY = 45;
+      const badgeH = 90;
+      ctx.font = 'bold 28px "Noto Sans KR"';
       const badgeTextWidth = ctx.measureText(targetLabel).width;
-      const badgeW = badgeTextWidth + 40;
+      const badgeW = badgeTextWidth + 48;
 
       ctx.fillStyle = activeTheme.badgeBg;
       ctx.beginPath();
-      ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 32.5);
+      ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 45);
       ctx.fill();
 
       ctx.fillStyle = activeTheme.badgeTextColor;
@@ -961,44 +961,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillText(organizerText, 420 + sponsorBarWidth + 24, 455 + 37.5);
       }
 
-      // Vertical Divider
-      ctx.strokeStyle = activeTheme.detailsBorder;
-      ctx.lineWidth = 2.5;
-      ctx.beginPath();
-      ctx.moveTo(1670, 100);
-      ctx.lineTo(1670, 500);
-      ctx.stroke();
-
-      // Info Card background
-      ctx.fillStyle = activeTheme.detailsBg;
-      ctx.beginPath();
-      ctx.roundRect(1720, 100, 1180, 400, 20);
-      ctx.fill();
-      ctx.strokeStyle = activeTheme.detailsBorder;
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
-      // Info Details (Date & Location)
-      const infoX = 1790;
-      
-      // Date
-      drawCalendarIcon(ctx, infoX, 175, 50, activeTheme.detailsAccentColor);
-      ctx.fillStyle = activeTheme.detailsTextColor;
-      ctx.font = 'bold 40px "Noto Sans KR"';
-      ctx.fillText('일 시', infoX + 80, 175);
-      ctx.font = '400 40px "Noto Sans KR"';
-      ctx.fillText(dateText, infoX + 195, 175);
-
-      // Location
-      drawLocationIcon(ctx, infoX, 325, 50, activeTheme.detailsAccentColor);
-      ctx.fillStyle = activeTheme.detailsTextColor;
-      ctx.font = 'bold 40px "Noto Sans KR"';
-      ctx.fillText('장 소', infoX + 80, 325);
-      ctx.font = '400 40px "Noto Sans KR"';
-      ctx.fillText(locationText, infoX + 195, 325);
-
-      // Right decorative mascot
-      drawMascot(ctx, targetAudienceValue, 2820, cHeight * 0.65, 230, true);
+      // Right decorative mascot (Shifted slightly left to balance empty space)
+      drawMascot(ctx, targetAudienceValue, 2750, cHeight * 0.5, 260, true);
 
     } else if (ratioValue === '3-1') {
       /* ==========================================
@@ -1007,20 +971,20 @@ document.addEventListener('DOMContentLoaded', () => {
       // Draw target-specific Nurungzzi character on the left
       drawMascot(ctx, targetAudienceValue, 240, cHeight * 0.45, 430);
 
-      // Draw Program Logo
-      const logoWidth = drawProgramLogo(ctx, 500, 80, 80);
+      // Draw Program Logo (Larger size)
+      const logoWidth = drawProgramLogo(ctx, 500, 70, 120);
 
       // Target Badge next to logo
-      const badgeX = 500 + logoWidth + 24;
-      const badgeY = 80;
-      const badgeH = 80;
-      ctx.font = 'bold 32px "Noto Sans KR"';
+      const badgeX = 500 + logoWidth + 28;
+      const badgeY = 70;
+      const badgeH = 120;
+      ctx.font = 'bold 38px "Noto Sans KR"';
       const badgeTextWidth = ctx.measureText(targetLabel).width;
-      const badgeW = badgeTextWidth + 48;
+      const badgeW = badgeTextWidth + 56;
 
       ctx.fillStyle = activeTheme.badgeBg;
       ctx.beginPath();
-      ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 40);
+      ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 60);
       ctx.fill();
 
       ctx.fillStyle = activeTheme.badgeTextColor;
@@ -1051,60 +1015,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillText(organizerText, 500 + sponsorBarWidth + 28, 530 + 42.5);
       }
 
-      // Vertical Divider
-      ctx.strokeStyle = activeTheme.detailsBorder;
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.moveTo(1720, 150);
-      ctx.lineTo(1720, 850);
-      ctx.stroke();
-
-      // Info Card background
-      ctx.fillStyle = activeTheme.detailsBg;
-      ctx.beginPath();
-      ctx.roundRect(1780, 150, 1140, 700, 24);
-      ctx.fill();
-      ctx.strokeStyle = activeTheme.detailsBorder;
-      ctx.lineWidth = 2.5;
-      ctx.stroke();
-
-      // Details inside card
-      const infoX = 1850;
-      
-      // Date Section
-      drawCalendarIcon(ctx, infoX, 260, 60, activeTheme.detailsAccentColor);
-      ctx.fillStyle = activeTheme.detailsTextColor;
-      ctx.font = 'bold 44px "Noto Sans KR"';
-      ctx.fillText('행사 일시', infoX + 90, 260);
-      ctx.font = '400 40px "Noto Sans KR"';
-      
-      const dateWords = dateText.split(' ');
-      if (dateText.length > 20 && dateWords.length > 2) {
-        const midPoint = Math.floor(dateWords.length / 2);
-        const line1 = dateWords.slice(0, midPoint).join(' ');
-        const line2 = dateWords.slice(midPoint).join(' ');
-        ctx.fillText(line1, infoX + 90, 345);
-        ctx.fillText(line2, infoX + 90, 410);
-      } else {
-        ctx.fillText(dateText, infoX + 90, 345);
-      }
-
-      // Location Section
-      drawLocationIcon(ctx, infoX, 540, 60, activeTheme.detailsAccentColor);
-      ctx.fillStyle = activeTheme.detailsTextColor;
-      ctx.font = 'bold 44px "Noto Sans KR"';
-      ctx.fillText('행사 장소', infoX + 90, 540);
-      ctx.font = '400 40px "Noto Sans KR"';
-      
-      if (locationText.length > 15) {
-        ctx.fillText(locationText.substring(0, 15), infoX + 90, 625);
-        ctx.fillText(locationText.substring(15), infoX + 90, 690);
-      } else {
-        ctx.fillText(locationText, infoX + 90, 625);
-      }
-
-      // Secondary floating mascot
-      drawMascot(ctx, targetAudienceValue, 2850, cHeight * 0.75, 300, true);
+      // Secondary floating mascot (Centered and scaled nicely)
+      drawMascot(ctx, targetAudienceValue, 2750, cHeight * 0.5, 360, true);
 
     } else if (ratioValue === '16-9') {
       /* ==========================================
@@ -1113,20 +1025,20 @@ document.addEventListener('DOMContentLoaded', () => {
       // Draw target-specific Nurungzzi character on the left
       drawMascot(ctx, targetAudienceValue, 220, cHeight * 0.5, 340);
 
-      // Draw Program Logo
-      const logoWidth = drawProgramLogo(ctx, 420, 60, 70);
+      // Draw Program Logo (Larger size)
+      const logoWidth = drawProgramLogo(ctx, 420, 50, 100);
 
       // Target Badge next to logo
-      const badgeX = 420 + logoWidth + 20;
-      const badgeY = 60;
-      const badgeH = 70;
-      ctx.font = 'bold 24px "Noto Sans KR"';
+      const badgeX = 420 + logoWidth + 24;
+      const badgeY = 50;
+      const badgeH = 100;
+      ctx.font = 'bold 28px "Noto Sans KR"';
       const badgeTextWidth = ctx.measureText(targetLabel).width;
-      const badgeW = badgeTextWidth + 40;
+      const badgeW = badgeTextWidth + 48;
 
       ctx.fillStyle = activeTheme.badgeBg;
       ctx.beginPath();
-      ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 35);
+      ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 50);
       ctx.fill();
 
       ctx.fillStyle = activeTheme.badgeTextColor;
@@ -1157,62 +1069,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillText(organizerText, 420 + sponsorBarWidth + 24, 470 + 40);
       }
 
-      // Vertical Divider
-      ctx.strokeStyle = activeTheme.detailsBorder;
-      ctx.lineWidth = 2.5;
-      ctx.beginPath();
-      ctx.moveTo(1670, 100);
-      ctx.lineTo(1670, 720);
-      ctx.stroke();
-
-      // Info Card background
-      ctx.fillStyle = activeTheme.detailsBg;
-      ctx.beginPath();
-      ctx.roundRect(1720, 100, 1180, 620, 22);
-      ctx.fill();
-      ctx.strokeStyle = activeTheme.detailsBorder;
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
-      // Info Details (Date & Location)
-      const infoX = 1790;
-      
-      // Date Section
-      drawCalendarIcon(ctx, infoX, 205, 52, activeTheme.detailsAccentColor);
-      ctx.fillStyle = activeTheme.detailsTextColor;
-      ctx.textAlign = 'left';
-      ctx.font = 'bold 38px "Noto Sans KR"';
-      ctx.fillText('행사 일시', infoX + 80, 205);
-      ctx.font = '400 36px "Noto Sans KR"';
-      
-      const dateWords = dateText.split(' ');
-      if (dateText.length > 20 && dateWords.length > 2) {
-        const midPoint = Math.floor(dateWords.length / 2);
-        const line1 = dateWords.slice(0, midPoint).join(' ');
-        const line2 = dateWords.slice(midPoint).join(' ');
-        ctx.fillText(line1, infoX + 80, 290);
-        ctx.fillText(line2, infoX + 80, 355);
-      } else {
-        ctx.fillText(dateText, infoX + 80, 290);
-      }
-
-      // Location Section
-      drawLocationIcon(ctx, infoX, 455, 52, activeTheme.detailsAccentColor);
-      ctx.fillStyle = activeTheme.detailsTextColor;
-      ctx.textAlign = 'left';
-      ctx.font = 'bold 38px "Noto Sans KR"';
-      ctx.fillText('행사 장소', infoX + 80, 455);
-      ctx.font = '400 36px "Noto Sans KR"';
-      
-      if (locationText.length > 15) {
-        ctx.fillText(locationText.substring(0, 15), infoX + 80, 540);
-        ctx.fillText(locationText.substring(15), infoX + 80, 605);
-      } else {
-        ctx.fillText(locationText, infoX + 80, 540);
-      }
-
-      // Right decorative mascot
-      drawMascot(ctx, targetAudienceValue, 2800, cHeight * 0.72, 240, true);
+      // Right decorative mascot (Centered and scaled nicely)
+      drawMascot(ctx, targetAudienceValue, 2750, cHeight * 0.5, 270, true);
     }
   }
 
