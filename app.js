@@ -914,125 +914,14 @@ document.addEventListener('DOMContentLoaded', () => {
       /* ==========================================
          LAYOUT: 5:1 Standard Banner
          ========================================== */
-      // Draw target-specific Nurungzzi character on the left
-      drawMascot(ctx, targetAudienceValue, 210, cHeight * 0.5, 310);
-
-      // Draw Program Logo (Larger size)
-      const logoWidth = drawProgramLogo(ctx, 420, 45, 90);
+      // Draw Program Logo (Larger size in top-left)
+      const logoWidth = drawProgramLogo(ctx, 80, 45, 100);
       
       // Target Badge next to logo
-      const badgeX = 420 + logoWidth + 25;
+      const badgeX = 80 + logoWidth + 25;
       const badgeY = 45;
-      const badgeH = 90;
-      ctx.font = 'bold 28px "Noto Sans KR"';
-      const badgeTextWidth = ctx.measureText(targetLabel).width;
-      const badgeW = badgeTextWidth + 48;
-
-      ctx.fillStyle = activeTheme.badgeBg;
-      ctx.beginPath();
-      ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 45);
-      ctx.fill();
-
-      ctx.fillStyle = activeTheme.badgeTextColor;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(targetLabel, badgeX + badgeW/2, badgeY + badgeH/2 + 2);
-
-      // Subtitle
-      ctx.fillStyle = activeTheme.subtitleColor;
-      ctx.font = '500 42px "Noto Sans KR"';
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'top';
-      ctx.fillText(subtitle, 420, 180);
-
-      // Main Title
-      ctx.fillStyle = activeTheme.titleColor;
-      ctx.font = 'bold 106px "Do Hyeon"';
-      ctx.fillText(title, 420, 245);
-
-      // Sponsor Logo bar (Bottom-left)
-      const sponsorBarWidth = drawSponsors(ctx, 420, 455, 75);
-
-      // Sponsor / Organizer text next to the bar
-      if (organizerText) {
-        ctx.fillStyle = activeTheme.isDark ? 'rgba(255,255,255,0.5)' : '#64748B';
-        ctx.font = '400 26px "Noto Sans KR"';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(organizerText, 420 + sponsorBarWidth + 24, 455 + 37.5);
-      }
-
-      // Right decorative mascot (Shifted slightly left to balance empty space)
-      drawMascot(ctx, targetAudienceValue, 2750, cHeight * 0.5, 260, true);
-
-    } else if (ratioValue === '3-1') {
-      /* ==========================================
-         LAYOUT: 3:1 PPT Insert Banner
-         ========================================== */
-      // Draw target-specific Nurungzzi character on the left
-      drawMascot(ctx, targetAudienceValue, 240, cHeight * 0.45, 430);
-
-      // Draw Program Logo (Larger size)
-      const logoWidth = drawProgramLogo(ctx, 500, 70, 120);
-
-      // Target Badge next to logo
-      const badgeX = 500 + logoWidth + 28;
-      const badgeY = 70;
-      const badgeH = 120;
-      ctx.font = 'bold 38px "Noto Sans KR"';
-      const badgeTextWidth = ctx.measureText(targetLabel).width;
-      const badgeW = badgeTextWidth + 56;
-
-      ctx.fillStyle = activeTheme.badgeBg;
-      ctx.beginPath();
-      ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 60);
-      ctx.fill();
-
-      ctx.fillStyle = activeTheme.badgeTextColor;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(targetLabel, badgeX + badgeW/2, badgeY + badgeH/2 + 2);
-
-      // Subtitle
-      ctx.fillStyle = activeTheme.subtitleColor;
-      ctx.font = '500 52px "Noto Sans KR"';
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'top';
-      ctx.fillText(subtitle, 500, 220);
-
-      // Main Title
-      ctx.fillStyle = activeTheme.titleColor;
-      ctx.font = 'bold 135px "Do Hyeon"';
-      ctx.fillText(title, 500, 295);
-
-      // Sponsor Logo bar
-      const sponsorBarWidth = drawSponsors(ctx, 500, 530, 85);
-
-      // Organizer text next to the bar
-      if (organizerText) {
-        ctx.fillStyle = activeTheme.isDark ? 'rgba(255,255,255,0.5)' : '#64748B';
-        ctx.font = '400 30px "Noto Sans KR"';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(organizerText, 500 + sponsorBarWidth + 28, 530 + 42.5);
-      }
-
-      // Secondary floating mascot (Centered and scaled nicely)
-      drawMascot(ctx, targetAudienceValue, 2750, cHeight * 0.5, 360, true);
-
-    } else if (ratioValue === '16-9') {
-      /* ==========================================
-         LAYOUT: 16:9 PPT Slide Banner (Half-Height)
-         ========================================== */
-      // Draw target-specific Nurungzzi character on the left
-      drawMascot(ctx, targetAudienceValue, 220, cHeight * 0.5, 340);
-
-      // Draw Program Logo (Larger size)
-      const logoWidth = drawProgramLogo(ctx, 420, 50, 100);
-
-      // Target Badge next to logo
-      const badgeX = 420 + logoWidth + 24;
-      const badgeY = 50;
       const badgeH = 100;
-      ctx.font = 'bold 28px "Noto Sans KR"';
+      ctx.font = 'bold 30px "Noto Sans KR"';
       const badgeTextWidth = ctx.measureText(targetLabel).width;
       const badgeW = badgeTextWidth + 48;
 
@@ -1046,31 +935,163 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.textBaseline = 'middle';
       ctx.fillText(targetLabel, badgeX + badgeW/2, badgeY + badgeH/2 + 2);
 
-      // Subtitle
+      // Subtitle (Centered, larger & longer)
       ctx.fillStyle = activeTheme.subtitleColor;
-      ctx.font = '500 44px "Noto Sans KR"';
-      ctx.textAlign = 'left';
+      ctx.font = '500 48px "Noto Sans KR"';
+      ctx.textAlign = 'center';
       ctx.textBaseline = 'top';
-      ctx.fillText(subtitle, 420, 195);
+      ctx.fillText(subtitle, 1500, 190);
 
-      // Main Title
+      // Main Title (Centered & Large)
       ctx.fillStyle = activeTheme.titleColor;
-      ctx.font = 'bold 112px "Do Hyeon"';
-      ctx.fillText(title, 420, 260);
+      ctx.font = 'bold 125px "Do Hyeon"';
+      ctx.textAlign = 'center';
+      ctx.fillText(title, 1500, 265);
 
-      // Sponsor Logo bar
-      const sponsorBarWidth = drawSponsors(ctx, 420, 470, 80);
+      // Sponsor Logo bar (Centered at bottom)
+      const sponsorHeight = 75;
+      const moe = loadedImages.moe;
+      const kofac = loadedImages.kofac;
+      const moeW = moe ? (sponsorHeight - 20) * (moe.width / moe.height) : 150;
+      const kofacW = kofac ? (sponsorHeight - 20) * (kofac.width / kofac.height) : 170;
+      const totalSponsorW = 22 * 2 + moeW + 24 + kofacW;
+      const sponsorX = 1500 - totalSponsorW / 2;
+      drawSponsors(ctx, sponsorX, 445, sponsorHeight);
 
-      // Organizer text next to the bar
+      // Sponsor / Organizer text (Centered below sponsor logos)
+      if (organizerText) {
+        ctx.fillStyle = activeTheme.isDark ? 'rgba(255,255,255,0.5)' : '#64748B';
+        ctx.font = '400 24px "Noto Sans KR"';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(organizerText, 1500, 540);
+      }
+
+      // Flanking Mascots (Left and Right)
+      drawMascot(ctx, targetAudienceValue, 220, 370, 320);
+      drawMascot(ctx, targetAudienceValue, 2780, 370, 320, true);
+
+    } else if (ratioValue === '3-1') {
+      /* ==========================================
+         LAYOUT: 3:1 PPT Insert Banner
+         ========================================== */
+      // Draw Program Logo (Larger size in top-left)
+      const logoWidth = drawProgramLogo(ctx, 100, 60, 140);
+
+      // Target Badge next to logo
+      const badgeX = 100 + logoWidth + 30;
+      const badgeY = 60;
+      const badgeH = 140;
+      ctx.font = 'bold 42px "Noto Sans KR"';
+      const badgeTextWidth = ctx.measureText(targetLabel).width;
+      const badgeW = badgeTextWidth + 56;
+
+      ctx.fillStyle = activeTheme.badgeBg;
+      ctx.beginPath();
+      ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 70);
+      ctx.fill();
+
+      ctx.fillStyle = activeTheme.badgeTextColor;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(targetLabel, badgeX + badgeW/2, badgeY + badgeH/2 + 2);
+
+      // Subtitle (Centered, larger & longer)
+      ctx.fillStyle = activeTheme.subtitleColor;
+      ctx.font = '500 62px "Noto Sans KR"';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText(subtitle, 1500, 280);
+
+      // Main Title (Centered & Large)
+      ctx.fillStyle = activeTheme.titleColor;
+      ctx.font = 'bold 165px "Do Hyeon"';
+      ctx.textAlign = 'center';
+      ctx.fillText(title, 1500, 390);
+
+      // Sponsor Logo bar (Centered at bottom)
+      const sponsorHeight = 90;
+      const moe = loadedImages.moe;
+      const kofac = loadedImages.kofac;
+      const moeW = moe ? (sponsorHeight - 20) * (moe.width / moe.height) : 150;
+      const kofacW = kofac ? (sponsorHeight - 20) * (kofac.width / kofac.height) : 170;
+      const totalSponsorW = 22 * 2 + moeW + 24 + kofacW;
+      const sponsorX = 1500 - totalSponsorW / 2;
+      drawSponsors(ctx, sponsorX, 720, sponsorHeight);
+
+      // Sponsor / Organizer text (Centered below sponsor logos)
+      if (organizerText) {
+        ctx.fillStyle = activeTheme.isDark ? 'rgba(255,255,255,0.5)' : '#64748B';
+        ctx.font = '400 32px "Noto Sans KR"';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(organizerText, 1500, 845);
+      }
+
+      // Flanking Mascots (Left and Right)
+      drawMascot(ctx, targetAudienceValue, 280, 620, 480);
+      drawMascot(ctx, targetAudienceValue, 2720, 620, 480, true);
+
+    } else if (ratioValue === '16-9') {
+      /* ==========================================
+         LAYOUT: 16:9 PPT Slide Banner (Half-Height)
+         ========================================== */
+      // Draw Program Logo (Larger size in top-left)
+      const logoWidth = drawProgramLogo(ctx, 80, 50, 120);
+
+      // Target Badge next to logo
+      const badgeX = 80 + logoWidth + 24;
+      const badgeY = 50;
+      const badgeH = 120;
+      ctx.font = 'bold 28px "Noto Sans KR"';
+      const badgeTextWidth = ctx.measureText(targetLabel).width;
+      const badgeW = badgeTextWidth + 48;
+
+      ctx.fillStyle = activeTheme.badgeBg;
+      ctx.beginPath();
+      ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 60);
+      ctx.fill();
+
+      ctx.fillStyle = activeTheme.badgeTextColor;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(targetLabel, badgeX + badgeW/2, badgeY + badgeH/2 + 2);
+
+      // Subtitle (Centered, larger & longer)
+      ctx.fillStyle = activeTheme.subtitleColor;
+      ctx.font = '500 52px "Noto Sans KR"';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText(subtitle, 1500, 230);
+
+      // Main Title (Centered & Large)
+      ctx.fillStyle = activeTheme.titleColor;
+      ctx.font = 'bold 140px "Do Hyeon"';
+      ctx.textAlign = 'center';
+      ctx.fillText(title, 1500, 320);
+
+      // Sponsor Logo bar (Centered at bottom)
+      const sponsorHeight = 80;
+      const moe = loadedImages.moe;
+      const kofac = loadedImages.kofac;
+      const moeW = moe ? (sponsorHeight - 20) * (moe.width / moe.height) : 150;
+      const kofacW = kofac ? (sponsorHeight - 20) * (kofac.width / kofac.height) : 170;
+      const totalSponsorW = 22 * 2 + moeW + 24 + kofacW;
+      const sponsorX = 1500 - totalSponsorW / 2;
+      drawSponsors(ctx, sponsorX, 600, sponsorHeight);
+
+      // Sponsor / Organizer text (Centered below sponsor logos)
       if (organizerText) {
         ctx.fillStyle = activeTheme.isDark ? 'rgba(255,255,255,0.5)' : '#64748B';
         ctx.font = '400 26px "Noto Sans KR"';
+        ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(organizerText, 420 + sponsorBarWidth + 24, 470 + 40);
+        ctx.fillText(organizerText, 1500, 710);
       }
 
-      // Right decorative mascot (Centered and scaled nicely)
-      drawMascot(ctx, targetAudienceValue, 2750, cHeight * 0.5, 270, true);
+      // Flanking Mascots (Left and Right)
+      drawMascot(ctx, targetAudienceValue, 240, 510, 400);
+      drawMascot(ctx, targetAudienceValue, 2760, 510, 400, true);
     }
   }
 
