@@ -592,45 +592,76 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Draw Sponsor logos wrapped in a beautiful white rounded pill background card
-  function drawSponsors(ctx, x, y, height) {
+  function drawSponsors(ctx, x, y, height, isDraw = true) {
     ctx.save();
     
     const inha = loadedImages.inha;
     const moe = loadedImages.moe;
     const kofac = loadedImages.kofac;
     
+    // Calculate padding, gaps, and logo height offsets dynamically depending on sponsor height
+    let padding = 22;
+    let gap = 24;
+    let logoHeight = height - 20;
+    
+    if (height >= 110) {
+      padding = 26;
+      gap = 30;
+      logoHeight = height - 24;
+    } else if (height >= 100) {
+      padding = 24;
+      gap = 26;
+      logoHeight = height - 22;
+    }
+    
+    const logoYOffset = (height - logoHeight) / 2;
+    
     // Default fallback widths if not loaded
-    let inhaW = inha ? (height - 20) * (inha.width / inha.height) : 120;
-    let moeW = moe ? (height - 20) * (moe.width / moe.height) : 150;
-    let kofacW = kofac ? (height - 20) * (kofac.width / kofac.height) : 170;
+    const inhaW = inha ? logoHeight * (inha.width / inha.height) : logoHeight * 1.25;
+    const moeW = moe ? logoHeight * (moe.width / moe.height) : logoHeight * 1.5;
+    const kofacW = kofac ? logoHeight * (kofac.width / kofac.height) : logoHeight * 1.7;
     
-    const padding = 22;
-    const gap = 24;
-    const totalW = padding * 2 + inhaW + gap + moeW + gap + kofacW;
+    // Inha University logo text next to it
+    const textValue = '인하대학교';
+    const textFontSize = Math.round(logoHeight * 0.43);
+    ctx.font = `bold ${textFontSize}px "Noto Sans KR"`;
+    const inhaTextW = ctx.measureText(textValue).width;
+    const logoTextGap = Math.round(logoHeight * 0.15); // gap between logo and text
     
-    // Draw white container pill
-    ctx.fillStyle = '#FFFFFF';
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
-    ctx.shadowBlur = 12;
-    ctx.shadowOffsetY = 5;
-    ctx.beginPath();
-    ctx.roundRect(x, y, totalW, height, height / 2);
-    ctx.fill();
-    ctx.shadowColor = 'transparent'; // Reset shadow
+    const inhaCombinedW = inhaW + logoTextGap + inhaTextW;
+    const totalW = padding * 2 + inhaCombinedW + gap + moeW + gap + kofacW;
     
-    // Draw Inha University logo
-    if (inha) {
-      ctx.drawImage(inha, x + padding, y + 10, inhaW, height - 20);
-    }
-    
-    // Draw Ministry of Education (MOE)
-    if (moe) {
-      ctx.drawImage(moe, x + padding + inhaW + gap, y + 10, moeW, height - 20);
-    }
-    
-    // Draw Korea Foundation for Advancement of Science & Creativity (KOFAC)
-    if (kofac) {
-      ctx.drawImage(kofac, x + padding + inhaW + gap + moeW + gap, y + 10, kofacW, height - 20);
+    if (isDraw) {
+      // Draw white container pill
+      ctx.fillStyle = '#FFFFFF';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
+      ctx.shadowBlur = 12;
+      ctx.shadowOffsetY = 5;
+      ctx.beginPath();
+      ctx.roundRect(x, y, totalW, height, height / 2);
+      ctx.fill();
+      ctx.shadowColor = 'transparent'; // Reset shadow
+      
+      // Draw Inha University logo
+      if (inha) {
+        ctx.drawImage(inha, x + padding, y + logoYOffset, inhaW, logoHeight);
+      }
+      
+      // Draw "인하대학교" text next to the Inha logo
+      ctx.fillStyle = '#002D62'; // Inha Blue color
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(textValue, x + padding + inhaW + logoTextGap, y + height / 2);
+      
+      // Draw Ministry of Education (MOE)
+      if (moe) {
+        ctx.drawImage(moe, x + padding + inhaCombinedW + gap, y + logoYOffset, moeW, logoHeight);
+      }
+      
+      // Draw Korea Foundation for Advancement of Science & Creativity (KOFAC)
+      if (kofac) {
+        ctx.drawImage(kofac, x + padding + inhaCombinedW + gap + moeW + gap, y + logoYOffset, kofacW, logoHeight);
+      }
     }
     
     ctx.restore();
@@ -958,13 +989,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Sponsor Logo bar and Organizer text (Side-by-side single row, centered at bottom)
       const sponsorHeight = 90;
-      const inha = loadedImages.inha;
-      const moe = loadedImages.moe;
-      const kofac = loadedImages.kofac;
-      const inhaW = inha ? (sponsorHeight - 20) * (inha.width / inha.height) : 150;
-      const moeW = moe ? (sponsorHeight - 20) * (moe.width / moe.height) : 150;
-      const kofacW = kofac ? (sponsorHeight - 20) * (kofac.width / kofac.height) : 170;
-      const totalSponsorW = 22 * 2 + inhaW + 24 + moeW + 24 + kofacW;
+      const totalSponsorW = drawSponsors(ctx, 0, 0, sponsorHeight, false);
       
       ctx.font = '400 54px "Noto Sans KR"';
       const textWidth = ctx.measureText(organizerText).width;
@@ -1026,13 +1051,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Sponsor Logo bar and Organizer text (Side-by-side single row, centered at bottom)
       const sponsorHeight = 110;
-      const inha = loadedImages.inha;
-      const moe = loadedImages.moe;
-      const kofac = loadedImages.kofac;
-      const inhaW = inha ? (sponsorHeight - 24) * (inha.width / inha.height) : 200;
-      const moeW = moe ? (sponsorHeight - 24) * (moe.width / moe.height) : 200;
-      const kofacW = kofac ? (sponsorHeight - 24) * (kofac.width / kofac.height) : 220;
-      const totalSponsorW = 26 * 2 + inhaW + 30 + moeW + 30 + kofacW;
+      const totalSponsorW = drawSponsors(ctx, 0, 0, sponsorHeight, false);
       
       ctx.font = '400 72px "Noto Sans KR"';
       const textWidth = ctx.measureText(organizerText).width;
@@ -1094,13 +1113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Sponsor Logo bar and Organizer text (Side-by-side single row, centered at bottom)
       const sponsorHeight = 100;
-      const inha = loadedImages.inha;
-      const moe = loadedImages.moe;
-      const kofac = loadedImages.kofac;
-      const inhaW = inha ? (sponsorHeight - 22) * (inha.width / inha.height) : 180;
-      const moeW = moe ? (sponsorHeight - 22) * (moe.width / moe.height) : 180;
-      const kofacW = kofac ? (sponsorHeight - 22) * (kofac.width / kofac.height) : 200;
-      const totalSponsorW = 24 * 2 + inhaW + 26 + moeW + 26 + kofacW;
+      const totalSponsorW = drawSponsors(ctx, 0, 0, sponsorHeight, false);
       
       ctx.font = '400 63px "Noto Sans KR"';
       const textWidth = ctx.measureText(organizerText).width;
